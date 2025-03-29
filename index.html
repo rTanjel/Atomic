@@ -4,16 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Atomic Habits Wisdom - Dark Mode</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;500&family=Noto+Serif:wght@200;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Updated font: Noto Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
     body {
       min-height: 100vh;
       width: 100vw;
@@ -25,7 +25,6 @@
       overflow: hidden;
       color: #e0e0e0;
     }
-    
     .card-container {
       padding: 2rem;
       width: 90%;
@@ -36,15 +35,12 @@
       cursor: pointer;
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
-    
     .card-container:hover {
       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
     }
-    
     .card-content {
       text-align: left;
     }
-    
     .main-text {
       font-size: clamp(1.2rem, 3vw, 1.6rem);
       font-weight: 500;
@@ -55,7 +51,6 @@
       transform: translateY(10px);
       animation: fadeIn 0.6s ease forwards;
     }
-    
     .implementation {
       font-size: clamp(1rem, 3vw, 1.4rem);
       font-weight: 300;
@@ -66,7 +61,6 @@
       transform: translateY(10px);
       animation: fadeIn 0.6s ease 0.1s forwards;
     }
-    
     .source {
       font-size: 0.9rem;
       font-weight: 300;
@@ -75,14 +69,12 @@
       transform: translateY(10px);
       animation: fadeIn 0.6s ease 0.2s forwards;
     }
-    
     @keyframes fadeIn {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    
     @media (max-width: 480px) {
       .card-container {
         padding: 1.5rem;
@@ -170,7 +162,7 @@
       },
       {
         main: "Track your habits visually",
-        implementation: "Use a habit tracker, calendar, or journal to record your habits. Don't break the chain of X's on your calendar.",
+        implementation: "Use a habit tracker, calendar, or journal to record your habits. Don’t break the chain of X’s on your calendar.",
         source: "Measurement Strategy - Atomic Habits"
       },
       {
@@ -182,6 +174,57 @@
         main: "Reduce friction for good habits, increase it for bad ones",
         implementation: "Set out your gym clothes the night before. Unplug the TV and put it away. Make good habits the path of least resistance.",
         source: "Friction Strategy - Atomic Habits"
+      },
+      // New Quotes:
+      {
+        main: "Habits are the compound interest of self-improvement.",
+        implementation: "Each small change adds up over time. Focus on consistent improvement.",
+        source: "James Clear - Atomic Habits"
+      },
+      {
+        main: "Consistency over intensity.",
+        implementation: "Building habits is more about doing something consistently rather than in large amounts sporadically.",
+        source: "James Clear - Atomic Habits"
+      },
+      {
+        main: "Master the art of showing up.",
+        implementation: "Even on days you don't feel like it, just start with a small step.",
+        source: "James Clear - Atomic Habits"
+      },
+      {
+        main: "Transform your habits, transform your life.",
+        implementation: "Small daily habits can have a profound impact on your overall well-being.",
+        source: "Atomic Habits Insight"
+      },
+      {
+        main: "The secret to getting results that last is to never stop making improvements.",
+        implementation: "Constantly refine your habits for sustained success.",
+        source: "Atomic Habits Insight"
+      },
+      {
+        main: "Your habits shape your identity.",
+        implementation: "Every action is a vote for the type of person you wish to become. Choose wisely.",
+        source: "James Clear - Atomic Habits, p. 38"
+      },
+      {
+        main: "Start with a tiny habit.",
+        implementation: "Break your desired habit into a minuscule version to overcome inertia.",
+        source: "Atomic Habits Principle"
+      },
+      {
+        main: "Environment is the invisible hand that shapes human behavior.",
+        implementation: "Adjust your surroundings to encourage good habits and discourage bad ones.",
+        source: "James Clear - Atomic Habits"
+      },
+      {
+        main: "The key to building lasting habits is to make them effortless.",
+        implementation: "Simplify your routines to remove friction, making habit formation automatic.",
+        source: "James Clear - Atomic Habits"
+      },
+      {
+        main: "Small improvements add up to remarkable results.",
+        implementation: "Focus on tiny gains every day and watch them compound into significant change.",
+        source: "Atomic Habits Insight"
       }
     ];
     
