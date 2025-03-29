@@ -6,8 +6,8 @@
   <title>Atomic Habits Wisdom - Dark Mode</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Updated font: Noto Sans -->
-   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;500&family=Noto+Serif:wght@200;500&display=swap" rel="stylesheet">
+  <!-- Using Noto Sans and Noto Serif -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;500&family=Noto+Serif:wght@200;500&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -25,18 +25,32 @@
       overflow: hidden;
       color: #e0e0e0;
     }
+    /* Fixed container height to prevent jitter */
     .card-container {
       padding: 2rem;
       width: 90%;
       max-width: 680px;
+      height: 300px; /* Fixed height */
       background: #1e1e1e;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
       cursor: pointer;
+      position: relative;
+      overflow-y: auto;
       transition: background 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      /* Container animation */
+      animation: containerPulse 0.6s ease;
     }
     .card-container:hover {
       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
+    }
+    /* Container pulse animation */
+    @keyframes containerPulse {
+      0%   { transform: scale(0.97); }
+      50%  { transform: scale(1); }
+      100% { transform: scale(0.97); }
     }
     .card-content {
       text-align: left;
@@ -75,6 +89,14 @@
         transform: translateY(0);
       }
     }
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+    .fade-in { animation: fadeIn 0.6s ease forwards; }
+    .fade-out { animation: fadeOut 0.3s ease forwards; }
     @media (max-width: 480px) {
       .card-container {
         padding: 1.5rem;
@@ -247,13 +269,19 @@
       implementation.textContent = card.implementation;
       source.textContent = card.source;
       
-      // Restart animations by resetting style and forcing reflow
+      // Restart text animations by resetting style and forcing reflow
       [main, implementation, source].forEach(el => {
         el.style.opacity = 0;
         el.style.transform = "translateY(10px)";
         void el.offsetWidth;
         el.style.animation = 'fadeIn 0.6s ease forwards';
       });
+      
+      // Trigger a container pulse animation by re-adding the animation class
+      const container = document.querySelector('.card-container');
+      container.style.animation = 'none';
+      void container.offsetWidth;
+      container.style.animation = 'containerPulse 0.6s ease';
     }
     
     // Initialize on DOM load
