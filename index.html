@@ -4,17 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Atomic Habits Wisdom - Dark Mode</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Using Noto Sans and Noto Serif -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;500&family=Noto+Serif:wght@200;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Updated font: Noto Sans -->
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;500&family=Noto+Serif:wght@200;500&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
     body {
       min-height: 100vh;
       width: 100vw;
@@ -26,139 +25,81 @@
       overflow: hidden;
       color: #e0e0e0;
     }
-    
-    /* Fixed container height to prevent jitter */
-    .quote-container {
+    .card-container {
       padding: 2rem;
       width: 90%;
       max-width: 680px;
-      height: 300px; /* Fixed height */
       background: #1e1e1e;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
       cursor: pointer;
-      position: relative;
       transition: background 0.3s ease, box-shadow 0.3s ease;
-      overflow-y: auto;
-      display: flex;
-      align-items: center;
     }
-    
-    .quote-container:hover {
+    .card-container:hover {
       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
     }
-    
-    .quote-content {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
+    .card-content {
+      text-align: left;
     }
-    
-    .quote-text {
-      font-family: 'Noto Serif', serif;
-      font-size: clamp(1rem, 3vw, 1.6rem);
+    .main-text {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
       font-weight: 500;
-      color: #e0e0e0;
       margin-bottom: 1rem;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       line-height: 1.4;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeIn 0.6s ease forwards;
     }
-    
-    .quote-book {
-      font-family: 'Noto Sans', sans-serif;
-      color: #cccccc;
-      font-size: 0.9rem;
+    .implementation {
+      font-size: clamp(1rem, 3vw, 1.4rem);
       font-weight: 300;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.01em;
+      line-height: 1.4;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeIn 0.6s ease 0.1s forwards;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
     }
-    
-    .book-numeral {
-      font-family: 'Noto Serif', serif;
-      font-weight: 500;
-    }
-    
-    .quote-contemplation {
-      display: none;
-      font-family: 'Noto Sans', sans-serif;
-      color: #bbbbbb;
-      font-size: 0.875rem;
+    .source {
+      font-size: 0.9rem;
       font-weight: 300;
       letter-spacing: 0.02em;
-      line-height: 1.5;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeIn 0.6s ease 0.2s forwards;
-      padding: 0 1rem;
     }
-    
-    /* Show contemplation only for short quotes */
-    .short-quote .quote-contemplation {
-      display: block;
-    }
-    
     @keyframes fadeIn {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.6s ease forwards;
-    }
-    
-    .fade-out {
-      animation: fadeOut 0.3s ease forwards;
-    }
-    
     @media (max-width: 480px) {
-      .quote-container {
+      .card-container {
         padding: 1.5rem;
       }
-      
-      .quote-text {
-        font-size: clamp(0.875rem, 2.5vw, 1.4rem);
-        margin-bottom: 0.75rem;
+      .main-text {
+        font-size: clamp(1rem, 2.5vw, 1.4rem);
+        margin-bottom: 0.8rem;
       }
-      
-      .quote-book {
-        margin-bottom: 0.5rem;
+      .implementation {
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem);
       }
     }
   </style>
 </head>
 <body>
-  <div class="quote-container" onclick="nextQuote()" title="Click for another quote">
-    <div class="quote-content">
-      <p class="quote-text" id="quote-text"></p>
-      <p class="quote-book" id="quote-book">
-        <span class="book-numeral"></span>
-      </p>
-      <p class="quote-contemplation" id="quote-contemplation"></p>
+  <div class="card-container" onclick="setRandomCard()" title="Click for another insight">
+    <div class="card-content">
+      <p class="main-text" id="card-main"></p>
+      <p class="implementation" id="card-implementation"></p>
+      <p class="source" id="card-source"></p>
     </div>
   </div>
-  
+
   <script>
-    // Expanded Quotes Data
-    const quotes = [
+    const cards = [
       {
         main: "Use habit stacking to build new habits",
         implementation: "After [CURRENT HABIT], I will [NEW HABIT]. For example: 'After I pour my morning coffee, I will meditate for one minute.'",
@@ -287,61 +228,36 @@
       }
     ];
     
-        let currentQuoteIndex = -1;
+    let currentCardIndex = -1;
     
-    function setRandomQuote() {
+    function setRandomCard() {
       let newIndex;
       do {
-        newIndex = Math.floor(Math.random() * quotes.length);
-      } while (newIndex === currentQuoteIndex && quotes.length > 1);
+        newIndex = Math.floor(Math.random() * cards.length);
+      } while (newIndex === currentCardIndex && cards.length > 1);
       
-      currentQuoteIndex = newIndex;
-      displayQuote(quotes[currentQuoteIndex]);
-    }
-    
-    function displayQuote(quoteObj) {
-      const container = document.querySelector('.quote-container');
-      const quoteText = document.getElementById('quote-text');
-      const quoteBook = document.getElementById('quote-book');
-      const contemplation = document.getElementById('quote-contemplation');
+      currentCardIndex = newIndex;
+      const card = cards[currentCardIndex];
       
-      // Fade out existing content
-      [quoteText, quoteBook, contemplation].forEach(el => {
-        el.classList.remove('fade-in');
-        el.classList.add('fade-out');
+      const main = document.getElementById('card-main');
+      const implementation = document.getElementById('card-implementation');
+      const source = document.getElementById('card-source');
+      
+      main.textContent = card.main;
+      implementation.textContent = card.implementation;
+      source.textContent = card.source;
+      
+      // Restart animations by resetting style and forcing reflow
+      [main, implementation, source].forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = "translateY(10px)";
+        void el.offsetWidth;
+        el.style.animation = 'fadeIn 0.6s ease forwards';
       });
-      
-      setTimeout(() => {
-        // Update content
-        quoteText.textContent = `"${quoteObj.quote}"`;
-        quoteBook.innerHTML = `<span class="book-numeral">${quoteObj.book}</span>`;
-        contemplation.textContent = `For contemplation: ${quoteObj.contemplation}`;
-        
-        // Show contemplation only if quote length is short
-        container.classList.toggle('short-quote', quoteObj.quote.length < 100);
-        
-        // Fade in new content
-        [quoteText, quoteBook, contemplation].forEach(el => {
-          el.classList.remove('fade-out');
-          el.classList.add('fade-in');
-        });
-        
-        // Adjust font size for longer quotes
-        if (quoteObj.quote.length > 200) {
-          quoteText.style.fontSize = 'clamp(0.875rem, 2.5vw, 1.2rem)';
-        } else {
-          quoteText.style.fontSize = 'clamp(1rem, 3vw, 1.6rem)';
-        }
-      }, 300);
     }
     
-    function nextQuote() {
-      setRandomQuote();
-    }
-    
-    // Initialize with a random quote on window load
-    window.onload = setRandomQuote;
+    // Initialize on DOM load
+    document.addEventListener("DOMContentLoaded", setRandomCard);
   </script>
 </body>
-</html>
 </html>
